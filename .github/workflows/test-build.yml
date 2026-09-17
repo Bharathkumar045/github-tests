@@ -1,0 +1,15 @@
+name: Test · node-build.yml
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ci-test-1]
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  call:
+    uses: ./.github/workflows/node-build.yml
+    secrets: inherit

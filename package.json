@@ -1,0 +1,9 @@
+{
+  "name": "github-tests-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && echo \"module.exports = () => 'hello';\" > dist/index.js",
+    "test": "mkdir -p test-report && node --test --test-reporter=junit --test-reporter-destination=test-report/junit.xml test/"
+  }
+}

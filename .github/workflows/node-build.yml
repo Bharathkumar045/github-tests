@@ -61,12 +61,16 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     outputs:
       cache-key: ${{ steps.key.outputs.key }}
     steps:
+      - name: Ensure nodejs/npm (test image compat)
+        run: apk add --no-cache nodejs npm
+
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -115,10 +119,14 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
+      - name: Ensure nodejs/npm (test image compat)
+        run: apk add --no-cache nodejs npm
+
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -188,10 +196,14 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
+      - name: Ensure nodejs/npm (test image compat)
+        run: apk add --no-cache nodejs npm
+
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -246,12 +258,16 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     env:
       NODE_ENV: test
     steps:
+      - name: Ensure nodejs/npm (test image compat)
+        run: apk add --no-cache nodejs npm
+
       - name: Checkout Code
         uses: actions/checkout@v7
 

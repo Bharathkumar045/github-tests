@@ -2,6 +2,8 @@ name: Test · sbom.yml
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ci-test-1]
 
 permissions:
   contents: read

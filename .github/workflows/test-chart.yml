@@ -17,5 +17,5 @@ jobs:
       chart-name: "github-tests-app"
       chart-version: "0.1.0"
       chart-app-version: "0.1.0"
-      chart-repository: "helm"
+      chart-repository: "bharathkumarradha"
       check-docs: false

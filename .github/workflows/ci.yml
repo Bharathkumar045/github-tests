@@ -28,6 +28,7 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     outputs:
       TAG: ${{ steps.read.outputs.TAG }}
     steps:
@@ -71,6 +72,7 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7

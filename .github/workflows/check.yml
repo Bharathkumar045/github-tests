@@ -68,7 +68,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     steps:
@@ -113,7 +113,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -157,7 +157,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -203,7 +203,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     steps:
@@ -215,7 +215,7 @@ jobs:
           CHART_NAME: ${{ inputs.chart-name }}
           CHART_VERSION: ${{ inputs.chart-version }}
           CHART_REPOSITORY: ${{ inputs.chart-repository }}
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: |
           set -euo pipefail
@@ -266,7 +266,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     steps:
@@ -324,7 +324,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     steps:
@@ -332,7 +332,7 @@ jobs:
         env:
           IMAGE_TAG: ${{ inputs.image-tag }}
           IMAGE_REPOSITORY: ${{ inputs.image-repository }}
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: |
           set -euo pipefail

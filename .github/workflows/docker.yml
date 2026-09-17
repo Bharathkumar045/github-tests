@@ -120,7 +120,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -174,7 +174,7 @@ jobs:
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v3
         with:
           registry: ${{ vars.IMAGE_REGISTRY }}
-          username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
 
       - name: Assemble Base Image Build Arguments
@@ -300,7 +300,7 @@ jobs:
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v3
         with:
           registry: ${{ vars.IMAGE_REGISTRY }}
-          username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
 
       - name: Run Smoke Test Inside The Image
@@ -351,7 +351,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -360,7 +360,7 @@ jobs:
     steps:
       - name: Promote Candidate Image To Production
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
           TAG: ${{ inputs.release-tag }}
           CANDIDATE_TAG: ${{ inputs.candidate-tag }}

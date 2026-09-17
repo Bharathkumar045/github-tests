@@ -106,9 +106,6 @@ on:
         description: "Live URL of the deployed application (e.g. 'https://myapp.example.com')."
 
     secrets:
-      IMAGE_REGISTRY_USERNAME:
-        required: false
-        description: "Registry username used to verify the chart and image."
       IMAGE_REGISTRY_PASSWORD:
         required: false
         description: "Registry password or token used to verify the chart and image."
@@ -121,7 +118,7 @@ on:
 
 env:
   REGISTRY_HOST: ${{ vars.IMAGE_REGISTRY }}
-  REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+  REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
   REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
   CHART_NAME: ${{ inputs.chart-name }}
   CHART_VERSION: ${{ inputs.chart-version }}
@@ -149,7 +146,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     timeout-minutes: 10
@@ -261,7 +258,7 @@ jobs:
         if: steps.resolve.outputs.new_image != '' && env.REGISTRY_USERNAME != '' && env.REGISTRY_PASSWORD != ''
         env:
           REGISTRY_HOST: ${{ vars.IMAGE_REGISTRY }}
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: |
           set -euo pipefail
@@ -299,7 +296,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     timeout-minutes: 10
@@ -443,7 +440,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     timeout-minutes: 10

@@ -78,7 +78,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -108,7 +108,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -120,7 +120,7 @@ jobs:
 
       - name: Authenticate To Chart Registry
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: |
           set -euo pipefail
@@ -173,7 +173,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -185,7 +185,7 @@ jobs:
 
       - name: Authenticate To Chart Registry
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: printf '%s' "${REGISTRY_PASSWORD}" | helm registry login "${REGISTRY_HOST}" --username "${REGISTRY_USERNAME}" --password-stdin
 
@@ -238,7 +238,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -253,7 +253,7 @@ jobs:
 
       - name: Authenticate To Chart Registry
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: printf '%s' "${REGISTRY_PASSWORD}" | helm registry login "${REGISTRY_HOST}" --username "${REGISTRY_USERNAME}" --password-stdin
 
@@ -302,7 +302,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -314,7 +314,7 @@ jobs:
 
       - name: Authenticate To Chart Registry
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: printf '%s' "${REGISTRY_PASSWORD}" | helm registry login "${REGISTRY_HOST}" --username "${REGISTRY_USERNAME}" --password-stdin
 

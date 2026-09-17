@@ -116,7 +116,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.BUILDAH_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
       # buildah needs to mount the container filesystem it is assembling.
@@ -164,7 +164,7 @@ jobs:
         env:
           BASE_IMAGE_REPO: ${{ steps.base.outputs.repo }}
           BASE_IMAGE_TAG: ${{ steps.base.outputs.tag }}
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
           INSTALL_PKGS: ${{ inputs.install-packages }}
           REQUIRED_PKGS: ${{ inputs.required-packages }}
@@ -179,7 +179,7 @@ jobs:
       - name: Push Image
         id: push
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
           IMAGE_TAG: ${{ inputs.image-tag }}
           IMAGE_REPOSITORY: ${{ inputs.image-repository }}
@@ -240,7 +240,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     defaults:
@@ -249,7 +249,7 @@ jobs:
     steps:
       - name: Promote Candidate Image To Production
         env:
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
           TAG: ${{ inputs.release-tag }}
           CANDIDATE_TAG: ${{ inputs.candidate-tag }}

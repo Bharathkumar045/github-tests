@@ -53,9 +53,6 @@ on:
         description: "Newline-separated KEY=VALUE pairs of environment variables to export"
 
     secrets:
-      IMAGE_REGISTRY_USERNAME:
-        required: true
-        description: "Registry username used to verify the image."
       IMAGE_REGISTRY_PASSWORD:
         required: true
         description: "Registry password or token used to verify the image."
@@ -76,7 +73,7 @@ jobs:
     container:
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.TOOLKIT_BUILD_IMAGE }}
       credentials:
-        username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+        username: ${{ vars.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     timeout-minutes: 10
@@ -135,7 +132,7 @@ jobs:
           IMAGE_TAG: ${{ inputs.image-tag }}
           IMAGE_REPO: ${{ inputs.image-repository }}
           DEV_SUFFIX: ${{ inputs.dev-repository-suffix }}
-          REGISTRY_USERNAME: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
+          REGISTRY_USERNAME: ${{ vars.IMAGE_REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
         run: |
           set -euo pipefail

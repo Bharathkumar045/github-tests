@@ -234,7 +234,7 @@ Language runtime versions (`go-version`, `node-version`, `python-version`, `java
 
 - **A rejected Komodo deploy reported success.** The trigger used `curl -f ... || true`, so a 4xx
   or 5xx produced an empty execution id, which the poller reported as `ACCEPTED_ASYNC` and exited
-  0. The HTTP status is now captured and a non-2xx fails the job.
+  with status 0. The HTTP status is now captured and a non-2xx fails the job.
 - **A failed ArgoCD sync reported a healthy deployment.** Sync failure was a warning, after which
   `argocd app wait` returned immediately against the *previous* revision if the app was already
   Synced/Healthy. Sync failure is now fatal, and the observed revision is asserted against the
@@ -293,7 +293,6 @@ Language runtime versions (`go-version`, `node-version`, `python-version`, `java
 - Secrets are declared explicitly with `required: true` in `chart`, `check`, `docker`, `scan`,
   `sonarqube` and both deploys, so a missing credential fails at workflow-call validation.
 - Every `workflow_call` input now carries a `description`.
-
 
 ### Security
 

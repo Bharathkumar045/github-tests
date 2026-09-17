@@ -84,6 +84,7 @@ jobs:
       - name: Verify Tag Is Available
         env:
           TAG: ${{ inputs.tag }}
+        shell: bash
         run: |
           set -euo pipefail
 

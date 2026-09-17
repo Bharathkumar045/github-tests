@@ -48,7 +48,9 @@ jobs:
 
     steps:
       - name: Ensure git/bash/trivy/jq (test image compat)
-        run: apk add --no-cache git bash trivy jq
+        run: |
+          apk add --no-cache git bash jq curl
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
       - name: Checkout Code
         uses: actions/checkout@v7
@@ -141,7 +143,9 @@ jobs:
 
     steps:
       - name: Ensure git/bash/trivy/jq (test image compat)
-        run: apk add --no-cache git bash trivy jq
+        run: |
+          apk add --no-cache git bash jq curl
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
 
       - name: Checkout Code
         uses: actions/checkout@v7

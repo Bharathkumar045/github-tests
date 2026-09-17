@@ -77,6 +77,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
 
+      - name: Trust checkout ownership
+        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+
       - name: Run ${{ matrix.tool }}
         env:
           TOOL: ${{ matrix.tool }}

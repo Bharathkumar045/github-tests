@@ -669,7 +669,7 @@ print_license_summary() {
 print_array_summary() {
   local TITLE="${1}"
   local ARRAY_NAME="${2}"
-  local REASON_ARRAY="${3}"
+  local REASON_ARRAY="${3:-}"
   local -n _PRINT_REF="${ARRAY_NAME}"
   local COUNT=${#_PRINT_REF[@]}
   echo "${TITLE}: ${COUNT}"

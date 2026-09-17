@@ -116,6 +116,7 @@ jobs:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
       - name: Ensure bash/helm (test image compat)
+        shell: sh
         run: |
           apk add --no-cache bash curl
           curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -187,6 +188,7 @@ jobs:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
       - name: Ensure bash/helm (test image compat)
+        shell: sh
         run: |
           apk add --no-cache bash curl
           curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -258,6 +260,7 @@ jobs:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
       - name: Ensure bash/helm (test image compat)
+        shell: sh
         run: |
           apk add --no-cache bash curl
           curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash

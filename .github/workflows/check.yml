@@ -72,6 +72,9 @@ jobs:
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     steps:
+      - name: Ensure git (toolkit image check)
+        run: apk add --no-cache git
+
       - name: Checkout Code
         uses: actions/checkout@v7
 

@@ -118,7 +118,7 @@ jobs:
       - name: Ensure bash/helm (test image compat)
         shell: sh
         run: |
-          apk add --no-cache bash curl
+          apk add --no-cache bash curl openssl
           curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Checkout Code
@@ -190,7 +190,7 @@ jobs:
       - name: Ensure bash/helm (test image compat)
         shell: sh
         run: |
-          apk add --no-cache bash curl
+          apk add --no-cache bash curl openssl
           curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Checkout Code
@@ -262,7 +262,7 @@ jobs:
       - name: Ensure bash/helm (test image compat)
         shell: sh
         run: |
-          apk add --no-cache bash curl
+          apk add --no-cache bash curl openssl
           curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Download Chart Package

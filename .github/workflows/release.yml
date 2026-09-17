@@ -68,11 +68,17 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
+        shell: bash
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
 
     steps:
+      - name: Ensure bash (test image compat)
+        shell: sh
+        run: apk add --no-cache bash
+
       - name: Checkout Code
         uses: actions/checkout@v7
 

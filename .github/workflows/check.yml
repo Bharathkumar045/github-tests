@@ -72,8 +72,8 @@ jobs:
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
       options: --user root
     steps:
-      - name: Ensure git (test image compat)
-        run: apk add --no-cache git
+      - name: Ensure git/bash (test image compat)
+        run: apk add --no-cache git bash
 
       - name: Checkout Code
         uses: actions/checkout@v7

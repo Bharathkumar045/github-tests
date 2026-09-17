@@ -82,8 +82,8 @@ jobs:
           path: .ci-library
           token: ${{ secrets.CI_LIBRARY_TOKEN || github.token }}
 
-      - name: Ensure bash (test image compat)
-        run: apk add --no-cache bash
+      - name: Ensure bash/yamllint (test image compat)
+        run: apk add --no-cache bash yamllint
 
       - name: Resolve Lint Target
         id: target

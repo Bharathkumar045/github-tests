@@ -1,0 +1,5 @@
+replicaCount: 1
+
+image:
+  repository: bharathkumarradha/github-tests-app
+  tag: test-0.0.1

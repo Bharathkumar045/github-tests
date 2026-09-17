@@ -41,11 +41,15 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
 
     steps:
+      - name: Ensure git/bash/trivy/jq (test image compat)
+        run: apk add --no-cache git bash trivy jq
+
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -123,6 +127,7 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
@@ -135,6 +140,9 @@ jobs:
       SKIP_CVE_SCAN: ${{ vars.SKIP_CVE_SCAN || 'false' }}
 
     steps:
+      - name: Ensure git/bash/trivy/jq (test image compat)
+        run: apk add --no-cache git bash trivy jq
+
       - name: Checkout Code
         uses: actions/checkout@v7
 

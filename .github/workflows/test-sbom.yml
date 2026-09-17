@@ -1,0 +1,12 @@
+name: Test · sbom.yml
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  call:
+    uses: ./.github/workflows/sbom.yml
+    secrets: inherit

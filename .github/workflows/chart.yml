@@ -109,18 +109,10 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
-        shell: bash
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
-      - name: Ensure bash/helm (test image compat)
-        shell: sh
-        run: |
-          apk add --no-cache bash curl openssl
-          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -181,18 +173,10 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
-        shell: bash
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
-      - name: Ensure bash/helm (test image compat)
-        shell: sh
-        run: |
-          apk add --no-cache bash curl openssl
-          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -253,18 +237,10 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
-        shell: bash
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
     steps:
-      - name: Ensure bash/helm (test image compat)
-        shell: sh
-        run: |
-          apk add --no-cache bash curl openssl
-          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-
       - name: Download Chart Package
         uses: actions/download-artifact@v8
         with:

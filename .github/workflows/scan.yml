@@ -107,22 +107,11 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
-    env:
-      GIT_CONFIG_COUNT: "1"
-      GIT_CONFIG_KEY_0: "safe.directory"
-      GIT_CONFIG_VALUE_0: "*"
 
     steps:
-      - name: Ensure git/bash/trivy/jq/helm (test image compat)
-        run: |
-          apk add --no-cache git bash jq curl openssl
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-
       - name: Checkout Code
         uses: actions/checkout@v7
 

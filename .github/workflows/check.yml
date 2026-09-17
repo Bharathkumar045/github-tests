@@ -70,21 +70,13 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     steps:
-      - name: Ensure git/bash (test image compat)
-        run: apk add --no-cache git bash
-
       - name: Checkout Code
         uses: actions/checkout@v7
-
-      - name: Trust checkout ownership
-        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
 
       - name: Verify Tag Is Available
         env:
           TAG: ${{ inputs.tag }}
-        shell: bash
         run: |
           set -euo pipefail
 
@@ -122,7 +114,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
@@ -137,9 +128,6 @@ jobs:
           ref: ${{ github.job_workflow_sha }}
           path: .ci-library
           token: ${{ secrets.CI_LIBRARY_TOKEN || github.token }}
-
-      - name: Ensure bash/jq (test image compat)
-        run: apk add --no-cache bash jq
 
       - name: Verify Changelog Entry & Render Release Notes
         env:
@@ -169,7 +157,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
@@ -186,9 +173,6 @@ jobs:
           ref: ${{ github.job_workflow_sha }}
           path: .ci-library
           token: ${{ secrets.CI_LIBRARY_TOKEN || github.token }}
-
-      - name: Ensure bash (test image compat)
-        run: apk add --no-cache bash
 
       - name: Verify Migration Guide & Extract Section
         env:
@@ -218,7 +202,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
@@ -281,7 +264,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     steps:
       - name: Checkout Code
         uses: actions/checkout@v7
@@ -339,7 +321,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     steps:
       - name: Verify Image Tag Is Available
         env:

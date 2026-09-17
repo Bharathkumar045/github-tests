@@ -41,17 +41,11 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
 
     steps:
-      - name: Ensure git/bash/trivy/jq (test image compat)
-        run: |
-          apk add --no-cache git bash jq curl
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-
       - name: Checkout Code
         uses: actions/checkout@v7
 
@@ -129,7 +123,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
@@ -143,11 +136,6 @@ jobs:
       TRIVY_IGNORE_CVES: ${{ vars.TRIVY_IGNORE_CVES || 'KSV-0011 KSV-0014 KSV-0015 KSV-0016 KSV-0018 KSV-0110 KSV-0113 KSV-0125' }}
 
     steps:
-      - name: Ensure git/bash/trivy/jq (test image compat)
-        run: |
-          apk add --no-cache git bash jq curl
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
-
       - name: Checkout Code
         uses: actions/checkout@v7
 

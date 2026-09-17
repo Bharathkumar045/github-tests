@@ -122,22 +122,10 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     defaults:
       run:
         working-directory: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}
-    env:
-      GIT_CONFIG_COUNT: "1"
-      GIT_CONFIG_KEY_0: "safe.directory"
-      GIT_CONFIG_VALUE_0: "*"
     steps:
-      - name: Ensure git/bash/hadolint (test image compat)
-        run: |
-          apk add --no-cache git bash curl
-          curl -fsSL -o /usr/local/bin/hadolint \
-            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-linux-x86_64
-          chmod +x /usr/local/bin/hadolint
-
       - name: Checkout Code
         uses: actions/checkout@v7
 

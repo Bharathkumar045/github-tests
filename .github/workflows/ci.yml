@@ -28,7 +28,6 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     outputs:
       TAG: ${{ steps.read.outputs.TAG }}
     steps:
@@ -72,16 +71,9 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
-      options: --user root
     steps:
-      - name: Ensure bash/git (test image compat)
-        run: apk add --no-cache bash git
-
       - name: Checkout Code
         uses: actions/checkout@v7
-
-      - name: Trust checkout ownership
-        run: git config --global --add safe.directory "${GITHUB_WORKSPACE}"
 
       - name: Run ${{ matrix.tool }}
         env:

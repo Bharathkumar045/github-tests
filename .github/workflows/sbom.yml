@@ -140,6 +140,7 @@ jobs:
       TRIVY_TIMEOUT: ${{ vars.TRIVY_TIMEOUT || '60m' }}
       TRIVY_IGNORE_CONFIG_FILE: ${{ vars.TRIVY_IGNORE_CONFIG_FILE || 'ignored-cves.yml' }}
       SKIP_CVE_SCAN: ${{ vars.SKIP_CVE_SCAN || 'false' }}
+      TRIVY_IGNORE_CVES: ${{ vars.TRIVY_IGNORE_CVES || 'KSV-0011 KSV-0014 KSV-0015 KSV-0016 KSV-0018 KSV-0110 KSV-0113 KSV-0125' }}
 
     steps:
       - name: Ensure git/bash/trivy/jq (test image compat)

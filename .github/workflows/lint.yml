@@ -82,10 +82,13 @@ jobs:
           path: .ci-library
           token: ${{ secrets.CI_LIBRARY_TOKEN || github.token }}
 
-      - name: Ensure bash/yamllint/mdl (test image compat)
+      - name: Ensure bash/yamllint/mdl/hadolint (test image compat)
         run: |
-          apk add --no-cache bash yamllint ruby ruby-dev build-base
+          apk add --no-cache bash yamllint ruby ruby-dev build-base curl
           gem install mdl --no-document
+          curl -fsSL -o /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-linux-x86_64
+          chmod +x /usr/local/bin/hadolint
 
       - name: Resolve Lint Target
         id: target

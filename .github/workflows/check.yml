@@ -78,6 +78,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
 
+      - name: Ensure git remote 'origin' is configured
+        run: git remote get-url origin >/dev/null 2>&1 || git remote add origin "${{ github.server_url }}/${{ github.repository }}"
+
       - name: Verify Tag Is Available
         env:
           TAG: ${{ inputs.tag }}

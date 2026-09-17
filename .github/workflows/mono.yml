@@ -59,6 +59,7 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     outputs:
       MATRIX: ${{ steps.discover.outputs.MATRIX }}
       ANY_CHANGED: ${{ steps.discover.outputs.ANY_CHANGED }}

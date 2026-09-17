@@ -140,6 +140,7 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
 
     env:
       PROJECT_PATH: ${{ inputs.project-path || vars.PROJECT_PATH || '.' }}

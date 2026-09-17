@@ -29,6 +29,7 @@ jobs:
       credentials:
         username: ${{ secrets.IMAGE_REGISTRY_USERNAME }}
         password: ${{ secrets.IMAGE_REGISTRY_PASSWORD }}
+      options: --user root
     outputs:
       TAG: ${{ steps.read.outputs.TAG }}
     steps:

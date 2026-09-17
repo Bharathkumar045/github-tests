@@ -117,10 +117,11 @@ jobs:
       GIT_CONFIG_VALUE_0: "*"
 
     steps:
-      - name: Ensure git/bash/trivy/jq (test image compat)
+      - name: Ensure git/bash/trivy/jq/helm (test image compat)
         run: |
-          apk add --no-cache git bash jq curl
+          apk add --no-cache git bash jq curl openssl
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
       - name: Checkout Code
         uses: actions/checkout@v7

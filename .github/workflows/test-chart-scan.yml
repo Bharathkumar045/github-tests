@@ -1,0 +1,18 @@
+name: Test · scan.yml (chart config)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ci-test-1]
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  call:
+    uses: ./.github/workflows/scan.yml
+    secrets: inherit
+    with:
+      scan-type: config
+      config-type: chart
